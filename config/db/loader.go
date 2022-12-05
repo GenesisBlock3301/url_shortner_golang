@@ -1,6 +1,10 @@
-package config
+package db
 
-import "os"
+import (
+	"fmt"
+	"github.com/GenesisBlock3301/url_shortner_golang/logger"
+	"os"
+)
 
 var (
 	MongoUrl     = ""
@@ -17,6 +21,8 @@ func GetEnvDefault(key, defVal string) string {
 }
 
 func SetEnvironment() {
+	logger.Log{Message: "Environment loading"}.Info()
+	fmt.Println("Databse connection loading...")
 	MongoUrl = GetEnvDefault("MONGO_URL", "mongodb://localhost:27017/")
 	DatabaseName = GetEnvDefault("DATABASE_NAME", "shortener-link")
 	Port = GetEnvDefault("PORT", "8000")

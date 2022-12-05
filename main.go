@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/GenesisBlock3301/url_shortner_golang/config"
+	"github.com/GenesisBlock3301/url_shortner_golang/config/db"
 	"github.com/GenesisBlock3301/url_shortner_golang/logger"
+	"github.com/GenesisBlock3301/url_shortner_golang/route"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"log"
@@ -12,7 +13,7 @@ import (
 
 func init() {
 	initEnv()
-	config.Connect()
+	db.ConnectDB()
 }
 
 func initEnv() {
@@ -22,7 +23,7 @@ func initEnv() {
 		log.Println("There is not exist env file")
 		logger.Log{Message: "No local env file. using global OS environment variables."}.Info()
 	}
-	config.SetEnvironment()
+	db.SetEnvironment()
 }
 
 func main() {
@@ -32,6 +33,7 @@ func main() {
 			"message": "Hello",
 		})
 	})
+	route.RootRouter(router)
 	HOST := os.Getenv("HOST")
 	PORT := os.Getenv("PORT")
 	err := router.Run(HOST + `:` + PORT)
