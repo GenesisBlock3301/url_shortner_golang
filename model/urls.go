@@ -7,6 +7,7 @@ import (
 	"hash/fnv"
 	"net/http"
 	"net/url"
+	"os"
 	"strings"
 )
 
@@ -42,7 +43,7 @@ func (u *URL) CreateUrl(c *gin.Context) {
 		return
 	}
 	// In url only use these characters
-	BASE62 := "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	BASE62 := os.Getenv("BASE64")
 	//Hashed the LongUrl
 	hashValue := hash(urlData.LongUrl)
 	var str []string

@@ -1,1 +1,4 @@
-# url_shortner_golang
+# URL Shortener 
+
+## Setup and Install
+1. Create 
