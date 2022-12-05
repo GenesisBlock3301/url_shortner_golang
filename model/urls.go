@@ -19,6 +19,10 @@ type URL struct {
 	ShortUrl string `bson:"shortUrl omitempty"`
 }
 
+// CreateUrl for create short url
+// Firstly hashed the long url which get from client
+// Then calculate value based on Base 62
+
 func (u *URL) CreateUrl(c *gin.Context) {
 	// Create of get collection on database
 	_db := helpers.GetDB(CollectionName)
