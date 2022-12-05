@@ -7,13 +7,14 @@ import (
 	"time"
 )
 
-func GetDB(collectionName string) *mongo.Collection{
+//
+func GetDB(collectionName string) *mongo.Collection {
 	database := db.MongoDB
 	collection := database.Collection(collectionName)
 	return collection
 }
 
 func GetContext() (context.Context, context.CancelFunc) {
-	ctx, cancel := context.WithTimeout(context.Background(),5000*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 5000*time.Second)
 	return ctx, cancel
 }
