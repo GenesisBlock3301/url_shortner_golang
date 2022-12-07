@@ -9,7 +9,10 @@ func CreateUrlController(c *gin.Context) {
 	url := model.URL{}
 	url.CreateUrl(c)
 }
-
-func ForwardToTargetUrl(c *gin.Context)  {
+func GetShortUrlById(c *gin.Context) {
+	url := model.URL{}
+	url.ForwardToTargetUrl(c)
+}
+func ForwardToTargetUrl(c *gin.Context) {
 
 }
