@@ -1,7 +1,6 @@
 package model
 
 import (
-	"fmt"
 	"github.com/GenesisBlock3301/url_shortner_golang/config/helpers"
 	"github.com/GenesisBlock3301/url_shortner_golang/logger"
 	"github.com/gin-gonic/gin"
@@ -80,6 +79,7 @@ func hash(s string) uint64 {
 	return h.Sum64()
 }
 
+// ForwardToTargetUrl for redirect to target url
 func (u *URL) ForwardToTargetUrl(c *gin.Context) {
 	id := c.Params.ByName("key")
 	_db := helpers.GetDB(CollectionName)
@@ -93,8 +93,6 @@ func (u *URL) ForwardToTargetUrl(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"payload": err.Error()})
 		return
 	}
-	//redirectUrl := c.Request.Host + "/" + _url.Key
-	fmt.Println(_url.LongUrl)
 	c.Redirect(http.StatusMovedPermanently, _url.LongUrl)
 	c.JSON(http.StatusOK, gin.H{"payload": _url})
 }
