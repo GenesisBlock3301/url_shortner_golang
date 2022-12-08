@@ -1,4 +1,4 @@
 URL Shortener Beginners Project
 ===============================
 
-.. contents::
+.. contents:: 
